@@ -23,6 +23,37 @@ app.use(express.json());
 
 app.use(methodOverride('_method'));
 
+app.use(bacBaoVe);
+
+function bacBaoVe(req, res, next) {
+  if (['vethuong', 'vevip'].includes(req.query.ve)) {
+    req.face = 'Gach gach gach!!!';
+    return next();
+  }
+  res.status(403).json({
+    message: 'Access Denied',
+  });
+}
+
+// app.get(
+//   '/middleware',
+//   function (req, res, next) {
+//     if (['vethuong', 'vevip'].includes(req.query.ve)) {
+//       req.face = 'Gach gach gach!!!';
+//       return next();
+//     }
+//     res.status(403).json({
+//       message: 'Access Denied',
+//     });
+//   },
+//   function (req, res, next) {
+//     res.json({
+//       message: 'Successfully!',
+//       face: req.face,
+//     });
+//   },
+// );
+
 // HTTP Logger
 // app.use(morgan("combined"));
 
