@@ -23,7 +23,7 @@ class SiteController {
     course
       .save()
       .then(() => res.redirect('/me/stored/courses'))
-      .catch((error) => {});
+      .catch(next);
   }
 
   // [GET] /courses/:id/edit
@@ -73,9 +73,9 @@ class SiteController {
           .then(() => res.redirect('back'))
           .catch(next);
         break;
-    
+
       default:
-        res.json({ message: 'Invalid Action'});
+        res.json({ message: 'Invalid Action' });
     }
   }
 }
